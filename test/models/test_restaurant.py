@@ -15,8 +15,8 @@ class TestRestaurant:
         result = restaurant.describe_restaurant()
 
         #Assert
-        assert result[0] == expected_message1
-        assert result[1] == expected_message2
+        assert result[0] == expected_message1, "Mensagem experada não condiz com a mensagem retornada"
+        assert result[1] == expected_message2, "Mensagem experada não condiz com a mensagem retornada"
 
 
     def test_open_restaurant(self):
@@ -30,8 +30,8 @@ class TestRestaurant:
         result = restaurant.open_restaurant()
 
         # Assert
-        assert result == expected_message
-        assert restaurant.open == True
+        assert result == expected_message, "Mensagem de sucesso experada não condiz com a mensagem retornada"
+        assert restaurant.open == True, "Valor da variavel open não foi modificada com sucesso"
 
     def test_already_open_restaurant(self):
         # Setup
@@ -45,8 +45,8 @@ class TestRestaurant:
         result = restaurant.open_restaurant()
 
         # Assert
-        assert result == expected_message
-        assert restaurant.open == True
+        assert result == expected_message, "Mensagem de erro experada não condiz com mensagem de erro retornada"
+        assert restaurant.open == True, "Valor da variavel restaurant.ope foi modificada para False"
 
     def test_close_restaurant(self):
         # Setup
@@ -60,9 +60,9 @@ class TestRestaurant:
         result = restaurant.close_restaurant()
 
         # Assert
-        assert result == expected_message
-        assert restaurant.open == False
-        assert restaurant.number_served == 0
+        assert result == expected_message, "Mensagem experada não condiz com a mensagem retornada"
+        assert restaurant.open == False, "O valor da variavel open não foi modificada para False"
+        assert restaurant.number_served == 0, "O valor da variavel number_Served não foi modificada para 0"
 
     def test_already_close_restaurant(self):
         # Setup
@@ -75,9 +75,9 @@ class TestRestaurant:
         result = restaurant.close_restaurant()
 
         # Assert
-        assert result == expected_message
-        assert restaurant.open == False
-        assert restaurant.number_served == 0
+        assert result == expected_message, "Mensagem de erro esperado não condiz com mensagem de erro retornada"
+        assert restaurant.open == False, "O valor da variavel open não se manteve como False"
+        assert restaurant.number_served == 0, "O valor da variavel number_Served não se manteve como 0"
 
     def test_set_number_served(self):
         # Setup
@@ -92,8 +92,8 @@ class TestRestaurant:
         result = restaurant.set_number_served(new_total_number_served)
 
         # Assert
-        assert expected_message == result
-        assert restaurant.number_served == new_total_number_served
+        assert expected_message == result, "Mensagem experada não condiz com mensagem retornada"
+        assert restaurant.number_served == new_total_number_served, "O valor informado não foi inserido na variavel number_served"
 
     def test_set_number_served_with_invalid_number(self):
         # Setup
@@ -109,8 +109,8 @@ class TestRestaurant:
         result = restaurant.set_number_served(new_total_number_served)
 
         # Assert
-        assert expected_message == result
-        assert expected_total_number_Served == restaurant.number_served
+        assert expected_message == result, "Mensagem de erro experada não condiz com mensagem de erro retornada"
+        assert expected_total_number_Served == restaurant.number_served, "O valor da variavel number_served foi modificado"
 
     def test_set_number_served_with_restaurant_close(self):
         # Setup
@@ -125,8 +125,8 @@ class TestRestaurant:
         result = restaurant.set_number_served(new_total_number_served)
 
         # Assert
-        assert result == expected_result
-        assert restaurant.number_served == expected_number_served
+        assert result == expected_result, "Mensagem de erro experada não condiz com mensagem de erro retornada"
+        assert restaurant.number_served == expected_number_served, "O valor da variavel number_served foi modificado"
 
     def test_increment_number_served(self):
         # Setup
@@ -141,8 +141,8 @@ class TestRestaurant:
         result = restaurant.increment_number_served(new_increment_number_served)
 
         # Assert
-        assert expected_message == result
-        assert restaurant.number_served == new_increment_number_served
+        assert expected_message == result, "Mensagem experada não condiz com mensagem retornada"
+        assert restaurant.number_served == new_increment_number_served, "O valor da variavel number_served não foi incrementada"
 
     def test_increment_number_served_with_invalid_number(self):
         # Setup
@@ -158,8 +158,8 @@ class TestRestaurant:
         result = restaurant.increment_number_served(new_increment_number_served)
 
         # Assert
-        assert expected_message == result
-        assert restaurant.number_served == expected_number_served
+        assert expected_message == result, "Mensagem de erro experada não condiz com a mensagem de erro retornada"
+        assert restaurant.number_served == expected_number_served, "O número de servidos foi incrementado"
 
     def test_increment_number_served_with_restaurant_close(self):
         # Setup
@@ -174,5 +174,5 @@ class TestRestaurant:
         result = restaurant.increment_number_served(new_increment_number_served)
 
         # Assert
-        assert result == expected_result
-        assert restaurant.number_served == expected_number_served
+        assert result == expected_result, "Mensagem de erro experada não condiz com a mensagem de erro retornada"
+        assert restaurant.number_served == expected_number_served, "O número de servidos foi incrementado"
