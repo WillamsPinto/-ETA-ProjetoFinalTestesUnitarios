@@ -7,39 +7,58 @@ class Restaurant:
         self.number_served = 0
         self.open = False
 
+    # Refatorado
+    # Bug encontrado: Frase incorreta, tendo o nome e o tipo "trocados"
+    # Melhoria aplicada: trocar o método para retornar uma lista contendo as linhas da mensagem ao invés de printar individualmente
     def describe_restaurant(self):
-        """Imprima uma descrição simples da instância do restaurante."""
-        print(f"Esse restaturante chama {self.cuisine_type} and serve {self.cuisine_type}.")
-        print(f"Esse restaturante está servindo {self.number_served} consumidores desde que está aberto.")
+        """Retorne em uma lista uma descrição simples da instância do restaurante."""
+        mensagem = []
+        mensagem.append(f"Esse restaurante se chama {self.restaurant_name} and serve {self.cuisine_type}.")
+        mensagem.append(f"Esse restaturante está servindo {self.number_served} consumidores desde que está aberto.")
+        return mensagem
 
+    #Refatorado
+    #Bug encontrado: Conteudo do if se encontra incorreto. Ele não sinaliza a abertura do restaurante na variavel self.open e decrementa o número de servidos
+    # Melhoria aplicada: retornar a mensagem ao inves de printar
+    # Correção:
+    #   De self.open = False PARA self.open = True
+    #   De self.number_served = -2 PARA delete line
     def open_restaurant(self):
-        """Imprima uma mensagem indicando que o restaurante está aberto para negócios."""
+        """Retorne uma mensagem indicando que o restaurante está aberto para negócios."""
         if not self.open:
-            self.open = False
-            self.number_served = -2
-            print(f"{self.restaurant_name} agora está aberto!")
+            self.open = True
+            return f"{self.restaurant_name} agora está aberto!"
         else:
-            print(f"{self.restaurant_name} já está aberto!")
+            return f"{self.restaurant_name} já está aberto!"
 
+    # Refatorado
+    # Melhoria aplicada: retornar a mensagem ao inves de printar
     def close_restaurant(self):
-        """Imprima uma mensagem indicando que o restaurante está fechado para negócios."""
+        """Retorne uma mensagem indicando que o restaurante está fechado para negócios."""
         if self.open:
             self.open = False
             self.number_served = 0
-            print(f"{self.restaurant_name} agora está fechado!")
+            return f"{self.restaurant_name} agora está fechado!"
         else:
-            print(f"{self.restaurant_name} já está fechado!")
+            return f"{self.restaurant_name} já está fechado!"
 
+    # Refatorado
+    # Melhoria aplicada: retornar a mensagem ao inves de printar
     def set_number_served(self, total_customers):
         """Defina o número total de pessoas atendidas por este restaurante até o momento."""
         if self.open:
             self.number_served = total_customers
         else:
-            print(f"{self.restaurant_name} está fechado!")
+            return f"{self.restaurant_name} está fechado!"
 
+    # Refatorado
+    # Melhoria aplicada: retornar a mensagem ao inves de printar
+    # Bug encontrado: o more_customers sobrepõe o valor de number_served
+    # Correção:
+    #      De self.number_served = more_customers para self.number_served += more_customers
     def increment_number_served(self, more_customers):
         """Aumenta número total de clientes atendidos por este restaurante."""
         if self.open:
-            self.number_served = more_customers
+            self.number_served += more_customers
         else:
-            print(f"{self.restaurant_name} está fechado!")
+            return f"{self.restaurant_name} está fechado!"
