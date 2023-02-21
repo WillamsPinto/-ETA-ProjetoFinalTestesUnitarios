@@ -14,9 +14,9 @@ class TestIceCreamStand:
         result = restaurant.flavors_available()
 
         #Asserts
-        assert exptected_message == result[0]
+        assert exptected_message == result[0], "Mensagem experada não condiz com mensagem retornada"
         for index in range(1, result.__len__()):
-            assert flavors_list.__contains__(result[index])
+            assert flavors_list.__contains__(result[index]), "O sabor não foi encontrado na lista"
 
     def test_flavors_not_available(self):
         #Setup
@@ -30,8 +30,8 @@ class TestIceCreamStand:
         result = restaurant.flavors_available()
 
         #Asserts
-        assert exptected_message == result
-        assert restaurant.flavors == flavors_list
+        assert exptected_message == result, "Mensagem de erro experada para quando estiver sem estoque não condiz com mensagem de erro retornada"
+        assert restaurant.flavors == flavors_list, "A flavors_list não está vazia"
 
     def test_find_flavor(self):
         # Setup
@@ -46,7 +46,7 @@ class TestIceCreamStand:
         result = restaurant.find_flavor(expected_flavor)
 
         # Asserts
-        assert result == exptected_message
+        assert result == exptected_message, "Mensagem experada para quando houver sabor disponivel não condiz com mensagem retornada"
 
     def test_not_find_flavor(self):
         # Setup
@@ -61,7 +61,7 @@ class TestIceCreamStand:
         result = restaurant.find_flavor(find_flavor)
 
         # Asserts
-        assert result == exptected_message
+        assert result == exptected_message, "Mensagem de erro experada para quando não houver sabor no estoque não condiz com mensagem de erro retornada"
 
     def test_find_flavor_no_stock(self):
             # Setup
@@ -76,7 +76,7 @@ class TestIceCreamStand:
             result = restaurant.find_flavor(find_flavor)
 
             # Asserts
-            assert result == exptected_message
+            assert result == exptected_message, "Mensagem de erro experado para quando não houver estoque não condiz com mensagem de erro retornada"
 
     def test_add_flavor(self):
         # Setup
@@ -91,8 +91,8 @@ class TestIceCreamStand:
         result = restaurant.add_flavor(new_flavor)
 
         # Asserts
-        assert result == exptected_message
-        assert restaurant.flavors.__contains__(new_flavor)
+        assert result == exptected_message, "Mensagem de erro experado para quando o sabor é adicionado no estoque não condiz com a mensagem retornada"
+        assert restaurant.flavors.__contains__(new_flavor), "O sabor adicionado não está contido na lista de sabores"
 
     def test_add_already_flavor(self):
         # Setup
@@ -108,8 +108,8 @@ class TestIceCreamStand:
         result = restaurant.add_flavor(new_flavor)
 
         # Asserts
-        assert result == exptected_message
-        assert len(restaurant.flavors) == expected_flavors_list_len
+        assert result == exptected_message, "Mensagem de erro experado para quando o sabor já está disponível não condiz com mensagem de erro retornada"
+        assert len(restaurant.flavors) == expected_flavors_list_len, "O sabor foi adicionado a lista"
 
     def test_add_None_flavor(self):
         # Setup
@@ -125,8 +125,8 @@ class TestIceCreamStand:
         result = restaurant.add_flavor(new_flavor)
 
         # Asserts
-        assert result == exptected_message
-        assert len(restaurant.flavors) == expected_flavors_list_len
+        assert result == exptected_message, "Mensagem de erro experado para quando o sabor informado for 'None' não condiz com mensagem de erro retornada"
+        assert len(restaurant.flavors) == expected_flavors_list_len, "O sabor 'None' foi adicionado a lista"
 
     def test_add_empty_flavor(self):
         # Setup
@@ -142,8 +142,8 @@ class TestIceCreamStand:
         result = restaurant.add_flavor(new_flavor)
 
         # Asserts
-        assert result == exptected_message
-        assert len(restaurant.flavors) == expected_flavors_list_len
+        assert result == exptected_message, "Mensagem de erro experado para quando o sabor informado for uma string vazia não condiz com mensagem de erro retornada"
+        assert len(restaurant.flavors) == expected_flavors_list_len, "A string vazia foi adicionada a lista"
 
     def test_add_flavor_invalid_type(self):
         # Setup
@@ -159,5 +159,5 @@ class TestIceCreamStand:
         result = restaurant.add_flavor(new_flavor)
 
         # Asserts
-        assert result == exptected_message
-        assert len(restaurant.flavors) == expected_flavors_list_len
+        assert result == exptected_message, "Mensagem de erro experado para quando o sabor informado for um numero não condiz com mensagem de erro retornada"
+        assert len(restaurant.flavors) == expected_flavors_list_len, "O numero foi adicionado a lista"
