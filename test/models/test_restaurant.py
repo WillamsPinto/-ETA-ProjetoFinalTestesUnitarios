@@ -86,12 +86,31 @@ class TestRestaurant:
         restaurant = Restaurant(restaurant_name, cuisine_type)
         restaurant.open_restaurant()
         new_total_number_served = 50
+        expected_message = "Número de pessoas atendidas atualizado com sucesso!"
 
         # Act
-        restaurant.set_number_served(new_total_number_served)
+        result = restaurant.set_number_served(new_total_number_served)
 
         # Assert
+        assert expected_message == result
         assert restaurant.number_served == new_total_number_served
+
+    def test_set_number_served_with_invalid_number(self):
+        # Setup
+        restaurant_name = "Restaurante Lixo"
+        cuisine_type = "Lixo"
+        restaurant = Restaurant(restaurant_name, cuisine_type)
+        restaurant.open_restaurant()
+        new_total_number_served = None
+        expected_total_number_Served = 0
+        expected_message = "Valor informado invalido!"
+
+        # Act
+        result = restaurant.set_number_served(new_total_number_served)
+
+        # Assert
+        assert expected_message == result
+        assert expected_total_number_Served == restaurant.number_served
 
     def test_set_number_served_with_restaurant_close(self):
         # Setup
@@ -116,12 +135,31 @@ class TestRestaurant:
         restaurant = Restaurant(restaurant_name, cuisine_type)
         restaurant.open_restaurant()
         new_increment_number_served = 5
+        expected_message = "Total de clientes atendidos atualizado com sucesso!"
 
         # Act
-        restaurant.increment_number_served(new_increment_number_served)
+        result = restaurant.increment_number_served(new_increment_number_served)
 
         # Assert
+        assert expected_message == result
         assert restaurant.number_served == new_increment_number_served
+
+    def test_increment_number_served_with_invalid_number(self):
+        # Setup
+        restaurant_name = "Restaurante Lixo"
+        cuisine_type = "Lixo"
+        restaurant = Restaurant(restaurant_name, cuisine_type)
+        restaurant.open_restaurant()
+        new_increment_number_served = None
+        expected_message = "Valor informado invalido!"
+        expected_number_served = 0
+
+        # Act
+        result = restaurant.increment_number_served(new_increment_number_served)
+
+        # Assert
+        assert expected_message == result
+        assert restaurant.number_served == expected_number_served
 
     def test_increment_number_served_with_restaurant_close(self):
         # Setup

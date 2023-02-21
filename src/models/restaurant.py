@@ -43,22 +43,30 @@ class Restaurant:
             return f"{self.restaurant_name} já está fechado!"
 
     # Refatorado
-    # Melhoria aplicada: retornar a mensagem ao inves de printar
+    # Melhoria aplicada: retornar a mensagem ao inves de printar e adição de uma verificação se o valor informado é valido
     def set_number_served(self, total_customers):
         """Defina o número total de pessoas atendidas por este restaurante até o momento."""
         if self.open:
-            self.number_served = total_customers
+            if type(total_customers) == int:
+                self.number_served = total_customers
+                return "Número de pessoas atendidas atualizado com sucesso!"
+            else:
+                return "Valor informado invalido!"
         else:
             return f"{self.restaurant_name} está fechado!"
 
     # Refatorado
-    # Melhoria aplicada: retornar a mensagem ao inves de printar
+    # Melhoria aplicada: retornar a mensagem ao inves de printar, adição de uma verificação se o valor informado é valido e adição de mensagem para o cenário de sucesso
     # Bug encontrado: o more_customers sobrepõe o valor de number_served
     # Correção:
     #      De self.number_served = more_customers para self.number_served += more_customers
     def increment_number_served(self, more_customers):
         """Aumenta número total de clientes atendidos por este restaurante."""
         if self.open:
-            self.number_served += more_customers
+            if type(more_customers) == int:
+                self.number_served += more_customers
+                return "Total de clientes atendidos atualizado com sucesso!"
+            else:
+                return "Valor informado invalido!"
         else:
             return f"{self.restaurant_name} está fechado!"
